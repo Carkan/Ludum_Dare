@@ -3,34 +3,31 @@ using System.Collections;
 
 public class Destruction : MonoBehaviour {
 
-    GameObject lePlayer;
     int leLevel;
+    public int levelNeeded;
 
-    void Start ()
-    {
-        lePlayer = GameObject.Find("Asteroïde");
-        leLevel = lePlayer.GetComponent<CharacterManager>().level;
-
-    }
-
+  
     void OnCollisionEnter (Collision col)
     {
-        if (col.gameObject.tag == "Player" && leLevel < 2)
+        if (col.gameObject.tag == "Player" && CharacterManager.instance.level < levelNeeded)
         {
             Destroy(col.gameObject);
             Debug.Log("Game Over");
         }
 
-        if (col.gameObject.tag == "Player" && leLevel >= 2)
+        if (col.gameObject.tag == "Player" && CharacterManager.instance.level >= levelNeeded)
         {
             int numberChildren = transform.childCount;
             for (int i = 0; i < numberChildren - 1; i++)
             {
-                transform.GetChild(0).GetComponent<Rigidbody>().AddForce(new Vector3 (Random.Range(5, 10), Random.Range(5, 10), Random.Range(5, 10)) * 10 );
-                transform.GetChild(0).parent = null;
+                transform.GetChild(0).GetComponent<Rigidbody>().AddForce(new Vector3 (Random.Range(5, 20), Random.Range(5, 20), Random.Range(5, 20)) * 25 );
                 transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
+                transform.GetChild(0).GetComponent<MorceauDelais>().StartCoroutine("Delais");
+                transform.GetChild(0).parent = null;
+
             }
             Destroy(transform.GetChild(0).gameObject);
+            Destroy(gameObject);
         }
     }
 

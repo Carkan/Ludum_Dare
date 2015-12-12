@@ -40,8 +40,7 @@ public class Gravitation : MonoBehaviour {
             Vector3 forceDirection = transform.position - col.transform.position;
 
             //Calculer la distance entre vaisseau et la planète, l'enlever de la distance max, pour changer la force de pull. 
-            pullForce = (distanceMax - (Vector3.Distance(transform.position, col.transform.position))) * 50 ;
-            Debug.Log(pullForce);
+            pullForce = (distanceMax - (Vector3.Distance(transform.position, col.transform.position))) * 100 ;
 
             // ajoute la force dans la direction de la planète
             col.GetComponent<Rigidbody>().AddForce(forceDirection.normalized * pullForce * Time.fixedDeltaTime);
