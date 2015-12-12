@@ -7,7 +7,7 @@ public class MovePlayer : MonoBehaviour {
     bool aboutToShoot;
     bool isMoving;
     float speed;
-    float fadeSpeed;
+    
     public Image forceGauge;
 
     public GameObject asteroid;
@@ -20,35 +20,65 @@ public class MovePlayer : MonoBehaviour {
 	void Start ()
     {
         rb = asteroid.GetComponent<Rigidbody>();
-        speed = 10;
 	}
     
 	// Update is called once per frame
 	void Update () 
     {
         transform.position = asteroid.transform.position;
-        forceGauge.GetComponent<Image>().fillAmount = Input.GetAxis("L_YAxis_1");
+        
 
-        if(Input.GetAxis("L_YAxis_1") > 0)
+        if(rb.velocity.x < 3f
+            && rb.velocity.x > -3f
+            && rb.velocity.y < 3f
+            && rb.velocity.y > -3f
+            && rb.velocity.z < 3f
+            && rb.velocity.z > -3f)
+
         {
-            aboutToShoot = true;
-            speed = Input.GetAxis("L_YAxis_1") * 100;
+            isMoving = false;
         }
-        else if (aboutToShoot)
+
+
+        if (!isMoving)
         {
-            rb.AddForce(transform.forward * speed);
-            //StartCoroutine("FadeForce");
-            aboutToShoot = false;
+            forceGauge.GetComponent<Image>().fillAmount = Input.GetAxis("L_YAxis_1");
+            if (Input.GetAxis("L_YAxis_1") > 0)
+            {
+                aboutToShoot = true;
+                speed = Input.GetAxis("L_YAxis_1") * 500;
+            }
+            else if (aboutToShoot)
+            {
+
+                rb.AddForce(transform.forward * speed);
+                isMoving = true;
+                //StartCoroutine(FadeForce(-transform.forward, speed));
+
+                aboutToShoot = false;
+            }
         }
+        else
+        {
+            forceGauge.GetComponent<Image>().fillAmount = 0;
+        }
+        
 	}
 
-    IEnumerator FadeForce()
+    /*IEnumerator FadeForce(Vector3 direction, float pForce)
     {
-        while(fadeSpeed < speed)
+        float invertForce = 0;
+        
+        while(invertForce < pForce/50)
         {
-            rb.AddForce(-transform.forward * fadeSpeed);
-            fadeSpeed += 0.1f;
+            Debug.Log(invertForce);
+            rb.AddForce(direction * invertForce);
+            invertForce+=0.1f;
             yield return 0;
         }
-    }
+
+        
+        
+           
+    }*/
 }
