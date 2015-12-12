@@ -5,6 +5,7 @@ public class CameraManager : MonoBehaviour {
 
     float rotationX;
     float rotationY;
+    public int speed;
 
     public GameObject camera;
 
@@ -17,14 +18,8 @@ public class CameraManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
-        rotationX = -Input.GetAxis("R_YAxis_1");
-        rotationY = Input.GetAxis("R_XAxis_1");
-
-        //Debug.Log(rotationX);
-
-        //transform.eulerAngles += new Vector3(rotationX, rotationY, 0f);
-        transform.Rotate((Vector3.right * -Input.GetAxis("R_YAxis_1")) + Vector3.up * Input.GetAxis("R_XAxis_1"));
+        transform.Rotate((Vector3.right * -Input.GetAxis("R_YAxis_1")) * speed
+                        + Vector3.up * Input.GetAxis("R_XAxis_1") * speed);
         //camera.transform.Rotate((Vector3.right * -Input.GetAxis("R_YAxis_1")) + Vector3.up * Input.GetAxis("R_XAxis_1"));
 	}
 }
