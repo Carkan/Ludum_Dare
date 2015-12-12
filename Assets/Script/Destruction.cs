@@ -5,6 +5,7 @@ public class Destruction : MonoBehaviour {
 
     GameObject lePlayer;
     int leLevel;
+    public ProceduralMaterial destroyShader;
 
     void Start ()
     {
@@ -27,8 +28,9 @@ public class Destruction : MonoBehaviour {
             for (int i = 0; i < numberChildren - 1; i++)
             {
                 transform.GetChild(0).GetComponent<Rigidbody>().AddForce(new Vector3 (Random.Range(5, 10), Random.Range(5, 10), Random.Range(5, 10)) * 10 );
-                transform.GetChild(0).parent = null;
                 transform.GetChild(0).GetComponent<CapsuleCollider>().enabled = true;
+                transform.GetChild(0).GetComponent<Renderer>().material = destroyShader;
+                transform.GetChild(0).parent = null;
             }
             Destroy(transform.GetChild(0).gameObject);
         }
