@@ -8,12 +8,13 @@ public class Gravitation : MonoBehaviour {
     public float pullForce;
     private Transform target;
     Vector3 newPos;
-    private float distanceMax;
+    private float distanceMax;        
 
-    void Start ()
+        void Start ()
     {
         target = transform.parent.transform;
-        distanceMax = gameObject.GetComponent<SphereCollider>().radius;        
+        distanceMax = gameObject.GetComponent<SphereCollider>().radius;
+  
     }
 
     void Update ()
@@ -46,11 +47,10 @@ public class Gravitation : MonoBehaviour {
             col.GetComponent<Rigidbody>().AddForce(forceDirection.normalized * pullForce * Time.fixedDeltaTime);
 
 
-
             //Le player regarde en direction de la planète, puis on change son angle de 90degrés pour le faire tourner.
-            col.gameObject.transform.LookAt(target);
-            newPos = col.gameObject.transform.eulerAngles + new Vector3(0, 90, 0);
-            col.gameObject.transform.eulerAngles = newPos;
+            //col.gameObject.transform.LookAt(target);
+            //newPos = col.gameObject.transform.eulerAngles + new Vector3(0, 90, 0);
+            //col.gameObject.transform.eulerAngles = newPos;
 
 
         }
