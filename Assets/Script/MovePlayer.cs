@@ -46,7 +46,7 @@ public class MovePlayer : MonoBehaviour {
             if (Input.GetAxis("L_YAxis_1") > 0)
             {
                 aboutToShoot = true;
-                speed = Input.GetAxis("L_YAxis_1") * 500;
+                speed = Input.GetAxis("L_YAxis_1") * 2000;
             }
             else if (aboutToShoot)
             {
@@ -64,21 +64,4 @@ public class MovePlayer : MonoBehaviour {
         }
         
 	}
-
-    /*IEnumerator FadeForce(Vector3 direction, float pForce)
-    {
-        float invertForce = 0;
-        
-        while(invertForce < pForce/50)
-        {
-            Debug.Log(invertForce);
-            rb.AddForce(direction * invertForce);
-            invertForce+=0.1f;
-            yield return 0;
-        }
-
-        
-        
-           
-    }*/
 }
