@@ -9,6 +9,16 @@ public class CharacterManager : MonoBehaviour {
     public GameObject myCenter;
     public int level;
     public int morceaux;
+    public Mesh mesh1;
+    public Mesh mesh2;
+    public Mesh mesh3;
+    public Mesh mesh4;
+    public Mesh mesh5;
+    public Mesh mesh6;
+    public Mesh mesh7;
+    public Mesh mesh8;
+    public Mesh mesh9;
+    public Mesh mesh10;
 
     void Awake()
     {
@@ -22,6 +32,7 @@ public class CharacterManager : MonoBehaviour {
     {
         morceaux = 0;
         level = 1;
+        GetComponent<MeshFilter>().mesh = mesh1;
     }
 
     void OnTriggerEnter(Collider col)
@@ -60,38 +71,51 @@ public class CharacterManager : MonoBehaviour {
         if (morceaux >= 8 && level == 1)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh2;
         }
         if (morceaux >= 20 && level == 2)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh3;
         }
         if (morceaux >= 32 && level == 3 )
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh4;
         }
         if (morceaux >= 46 && level == 4)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh5;
         }
         if (morceaux >= 52 && level == 5)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh6;
         }
         if (morceaux >= 60 && level == 6)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh7;
         }
         if (morceaux >= 67 && level == 7)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh8;
         }
         if (morceaux >= 74 && level == 8)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh9;
         }
         if (morceaux >= 80 && level == 9)
         {
             LevelUp();
+            GetComponent<MeshFilter>().mesh = mesh10;
+        }
+        if (morceaux >= 83)
+        {
+            Debug.Log("FELICITATION T'ES TROP FORT");
         }
 
     }

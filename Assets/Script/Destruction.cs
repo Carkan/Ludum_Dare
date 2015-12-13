@@ -12,7 +12,7 @@ public class Destruction : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player" && CharacterManager.instance.level < levelNeeded)
         {
-            Destroy(col.gameObject);
+            col.gameObject.SetActive(false);
             Debug.Log("Game Over");
         }
 
