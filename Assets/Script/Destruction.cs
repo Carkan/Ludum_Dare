@@ -13,6 +13,8 @@ public class Destruction : MonoBehaviour {
         if (col.gameObject.tag == "Player" && CharacterManager.instance.level < levelNeeded)
         {
             col.gameObject.SetActive(false);
+            SoundManagerEvent.emit(SoundManagerType.DESTROY_PLAYER);
+
             Debug.Log("Game Over");
         }
 
@@ -28,6 +30,7 @@ public class Destruction : MonoBehaviour {
                 transform.GetChild(0).parent = null;
             }
             Destroy(transform.GetChild(0).gameObject);
+            SoundManagerEvent.emit(SoundManagerType.PLANETE_EXPLOSION);
             Destroy(gameObject);
         }
     }
