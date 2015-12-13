@@ -1,52 +1,47 @@
 fileFormatVersion: 2
-guid: 2e2e0ec66e5f98445ab8d2368f0b9e19
-timeCreated: 1449947529
+guid: a4dfd704679a4734fa7ffcfe2a19cbd9
+timeCreated: 1450010568
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Sphere002
-    100004: Sphere002_Part_1
-    100006: Sphere002_Part_2
-    100008: Sphere002_Part_3
-    100010: Sphere002_Part_4
-    100012: Sphere002_Part_5
-    100014: Sphere002_Part_6
-    100016: Sphere002_Part_7
+    100002: Sphere002_Part_1
+    100004: Sphere002_Part_2
+    100006: Sphere002_Part_3
+    100008: Sphere002_Part_4
+    100010: Sphere002_Part_5
+    100012: Sphere002_Part_6
+    100014: Sphere002_Part_7
     400000: //RootNode
-    400002: Sphere002
-    400004: Sphere002_Part_1
-    400006: Sphere002_Part_2
-    400008: Sphere002_Part_3
-    400010: Sphere002_Part_4
-    400012: Sphere002_Part_5
-    400014: Sphere002_Part_6
-    400016: Sphere002_Part_7
-    2300000: Sphere002
-    2300002: Sphere002_Part_1
-    2300004: Sphere002_Part_2
-    2300006: Sphere002_Part_3
-    2300008: Sphere002_Part_4
-    2300010: Sphere002_Part_5
-    2300012: Sphere002_Part_6
-    2300014: Sphere002_Part_7
-    3300000: Sphere002
-    3300002: Sphere002_Part_1
-    3300004: Sphere002_Part_2
-    3300006: Sphere002_Part_3
-    3300008: Sphere002_Part_4
-    3300010: Sphere002_Part_5
-    3300012: Sphere002_Part_6
-    3300014: Sphere002_Part_7
-    4300000: Sphere002
-    4300002: Sphere002_Part_1
-    4300004: Sphere002_Part_2
-    4300006: Sphere002_Part_3
-    4300008: Sphere002_Part_4
-    4300010: Sphere002_Part_5
-    4300012: Sphere002_Part_6
-    4300014: Sphere002_Part_7
+    400002: Sphere002_Part_1
+    400004: Sphere002_Part_2
+    400006: Sphere002_Part_3
+    400008: Sphere002_Part_4
+    400010: Sphere002_Part_5
+    400012: Sphere002_Part_6
+    400014: Sphere002_Part_7
+    2300000: Sphere002_Part_1
+    2300002: Sphere002_Part_2
+    2300004: Sphere002_Part_3
+    2300006: Sphere002_Part_4
+    2300008: Sphere002_Part_5
+    2300010: Sphere002_Part_6
+    2300012: Sphere002_Part_7
+    3300000: Sphere002_Part_1
+    3300002: Sphere002_Part_2
+    3300004: Sphere002_Part_3
+    3300006: Sphere002_Part_4
+    3300008: Sphere002_Part_5
+    3300010: Sphere002_Part_6
+    3300012: Sphere002_Part_7
+    4300000: Sphere002_Part_1
+    4300002: Sphere002_Part_2
+    4300004: Sphere002_Part_3
+    4300006: Sphere002_Part_4
+    4300008: Sphere002_Part_5
+    4300010: Sphere002_Part_6
+    4300012: Sphere002_Part_7
     9500000: //RootNode
   materials:
     importMaterials: 1
