@@ -64,9 +64,9 @@ public class MovePlayer : MonoBehaviour {
                 rb.AddForce(transform.forward * speed);
                 isMoving = true;
                 Debug.Log(transform.eulerAngles);
-                GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
-                particles.GetComponent<TaleManager>().target = asteroid.transform;
-                StartCoroutine(ParticleManager(particles));
+                //GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
+                //particles.GetComponent<TaleManager>().target = asteroid.transform;
+                //StartCoroutine(ParticleManager(particles));
                 speed = 0;
                 aboutToShoot = false;
             }
