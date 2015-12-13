@@ -9,6 +9,12 @@ public class MovePlayer : MonoBehaviour {
     float speed;
     float speedMax;
     public GameObject fxComete;
+
+    public Animator animatorFleche1;
+    public Animator animatorFleche2;
+    public Animator animatorFleche3;
+    public Animator animatorFleche4;
+
     
     public Image forceGauge;
 
@@ -44,11 +50,25 @@ public class MovePlayer : MonoBehaviour {
             isMoving = false;
         }
 
+        if(speed >= speedMax)
+        {
+            speed = speedMax;
+            animatorFleche1.SetBool("isLoaded", true);
+            animatorFleche2.SetBool("isLoaded", true);
+            animatorFleche3.SetBool("isLoaded", true);
+            animatorFleche4.SetBool("isLoaded", true);
+        }
+
 
         if (!isMoving)
         {
             if (Input.GetAxis("L_YAxis_1") > 0.9f)
             {
+                animatorFleche1.SetBool("Start_Anim", true);
+                animatorFleche2.SetBool("Start_Anim", true);
+                animatorFleche3.SetBool("Start_Anim", true);
+                animatorFleche4.SetBool("Start_Anim", true);
+
                 aboutToShoot = true;
                 forceGauge.enabled = true;
                 if(speed < speedMax)
@@ -62,6 +82,16 @@ public class MovePlayer : MonoBehaviour {
                 
                 rb.AddForce(transform.forward * speed);
                 isMoving = true;
+
+                animatorFleche1.SetBool("Start_Anim", false);
+                animatorFleche2.SetBool("Start_Anim", false);
+                animatorFleche3.SetBool("Start_Anim", false);
+                animatorFleche4.SetBool("Start_Anim", false);
+
+                animatorFleche1.SetBool("isLoaded", false);
+                animatorFleche2.SetBool("isLoaded", false);
+                animatorFleche3.SetBool("isLoaded", false);
+                animatorFleche4.SetBool("isLoaded", false);
                 if(speed > (speedMax/4)*3)
                 {
                     CameraManager.instance.StartCoroutine("MoveComete");
