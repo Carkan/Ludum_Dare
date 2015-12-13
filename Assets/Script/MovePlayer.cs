@@ -7,6 +7,9 @@ public class MovePlayer : MonoBehaviour {
     bool aboutToShoot;
     bool isMoving;
     float speed;
+    float speedMax;
+    public GameObject fxComete;
+    public GameObject myCamera;
     
     public Image forceGauge;
 
@@ -14,12 +17,15 @@ public class MovePlayer : MonoBehaviour {
 
     Rigidbody rb;
 
+    public GameObject m_ParticuleCanon;
 
 
 	// Use this for initialization
 	void Start ()
     {
         rb = asteroid.GetComponent<Rigidbody>();
+        speedMax = 5000;
+        forceGauge.enabled = false;
 	}
     
 	// Update is called once per frame
@@ -42,26 +48,39 @@ public class MovePlayer : MonoBehaviour {
 
         if (!isMoving)
         {
-            forceGauge.GetComponent<Image>().fillAmount = Input.GetAxis("L_YAxis_1");
-            if (Input.GetAxis("L_YAxis_1") > 0)
+            if (Input.GetAxis("L_YAxis_1") > 0.9f)
             {
                 aboutToShoot = true;
-                speed = Input.GetAxis("L_YAxis_1") * 2000;
+                forceGauge.enabled = true;
+                if(speed < speedMax)
+                {
+                    speed += 50;
+                }
+                
             }
             else if (aboutToShoot)
             {
-
+                
                 rb.AddForce(transform.forward * speed);
                 isMoving = true;
-                //StartCoroutine(FadeForce(-transform.forward, speed));
-
+                Debug.Log(transform.eulerAngles);
+                GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
+                particles.GetComponent<TaleManager>().target = asteroid.transform;
+                StartCoroutine(ParticleManager(particles));
+                speed = 0;
                 aboutToShoot = false;
             }
         }
         else
         {
-            forceGauge.GetComponent<Image>().fillAmount = 0;
+            forceGauge.enabled = false;
         }
         
 	}
+
+    IEnumerator ParticleManager(GameObject pParticles)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(pParticles);
+    }
 }
