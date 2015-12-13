@@ -5,6 +5,11 @@ public class CharacterManager : MonoBehaviour {
 
     public static CharacterManager instance;
 
+    public GameObject myCamera;
+    public GameObject myCenter;
+    public int level;
+    public int morceaux;
+
     void Awake()
     {
         if(instance == null)
@@ -12,11 +17,6 @@ public class CharacterManager : MonoBehaviour {
             instance = this;
         }
     }
-
-
-
-    public int level;
-    public int morceaux;
 
     void Start ()
     {
@@ -30,10 +30,8 @@ public class CharacterManager : MonoBehaviour {
         {
             if (col.GetComponent<MorceauDelais>().prenable)
             {
-                morceaux++;
-                Debug.Log(morceaux);
                 Destroy(col.gameObject);
-                LevelUp();
+                AddMorceau();
             }
         }
     }
@@ -41,45 +39,60 @@ public class CharacterManager : MonoBehaviour {
     void LevelUp ()
     {
         //Mettre un switch qui fait le level up en fonction des morceaux (si morceaux > 8 && < 20, level = 1)
-        if (morceaux < 8)
+        level++;
+        RescalePlayer();
+        RescaleCenter();
+    }
+
+    void RescaleCenter ()
+    {
+        myCenter.transform.localScale = myCenter.transform.localScale + new Vector3(0.5f, 0.5f, 0.5f);
+    }
+
+    void RescalePlayer()
+    {
+        transform.localScale = transform.localScale + new Vector3(0.5f, 0.5f, 0.5f);
+    }
+
+    void AddMorceau ()
+    {
+        morceaux++;
+        if (morceaux >= 8 && level == 1)
         {
-            level = 1;
+            LevelUp();
         }
-        if ( morceaux >= 8 && morceaux <20)
+        if (morceaux >= 20 && level == 2)
         {
-            level = 2;
+            LevelUp();
         }
-        if (morceaux >= 20 && morceaux < 32 )
+        if (morceaux >= 32 && level == 3 )
         {
-            level = 3;
+            LevelUp();
         }
-        if (morceaux >= 32 && morceaux < 46)
+        if (morceaux >= 46 && level == 4)
         {
-            level = 4;
+            LevelUp();
         }
-        if (morceaux >= 46 && morceaux < 52)
+        if (morceaux >= 52 && level == 5)
         {
-            level = 5;
+            LevelUp();
         }
-        if (morceaux >= 52 && morceaux < 60 )
+        if (morceaux >= 60 && level == 6)
         {
-            level = 6;
+            LevelUp();
         }
-        if (morceaux >= 60 && morceaux < 67)
+        if (morceaux >= 67 && level == 7)
         {
-            level = 7;
+            LevelUp();
         }
-        if (morceaux >= 67 && morceaux < 74)
+        if (morceaux >= 74 && level == 8)
         {
-            level = 8;
+            LevelUp();
         }
-        if (morceaux >= 74 && morceaux < 80)
+        if (morceaux >= 80 && level == 9)
         {
-            level = 9;
+            LevelUp();
         }
-        if (morceaux >=80)
-        {
-            level = 10;
-        }
+
     }
 }
