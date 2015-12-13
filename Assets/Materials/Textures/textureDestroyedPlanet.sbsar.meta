@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f00840e9f5462334daec808817ec8070
-timeCreated: 1449947800
+guid: c2e8329ee16f5ea44a080a543e3a6b5a
+timeCreated: 1450013816
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -56,13 +56,13 @@ SubstanceImporter:
       material: {instanceID: 0}
       baseUID: 679316570
     - shaderProp:
-        name: _EmissionMap
-      material: {instanceID: 0}
-      baseUID: 707051799
-    - shaderProp:
         name: _MetallicGlossMap
       material: {instanceID: 0}
       baseUID: 679316574
+    - shaderProp:
+        name: _EmissionMap
+      material: {instanceID: 0}
+      baseUID: 707051799
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
