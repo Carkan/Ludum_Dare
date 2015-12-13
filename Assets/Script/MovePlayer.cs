@@ -2,12 +2,26 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MovePlayer : MonoBehaviour {
+public class MovePlayer : MonoBehaviour
+{
+
+    #region Singleton
+    public static MovePlayer instance;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+    }
+    #endregion
+
 
     bool aboutToShoot;
     bool isMoving;
-    float speed;
-    float speedMax;
+    public float speed;
+    public float speedMax;
     public GameObject fxComete;
 
     public Animator animatorFleche1;
@@ -31,6 +45,7 @@ public class MovePlayer : MonoBehaviour {
         rb = asteroid.GetComponent<Rigidbody>();
         speedMax = 5000;
         forceGauge.enabled = false;
+        EventManager.ArrowIsLoaded += LaunchArrowLoadedSound;
 	}
     
 	// Update is called once per frame
@@ -94,8 +109,13 @@ public class MovePlayer : MonoBehaviour {
                 animatorFleche4.SetBool("isLoaded", false);
                 if(speed > (speedMax/4)*3)
                 {
+                    //SoundManagerEvent.emit(SoundManagerType.MOVE_FAST);
                     CameraManager.instance.StartCoroutine("MoveComete");
                     CameraManager.instance.StartCoroutine("Shake");
+                }
+                else
+                {
+                   // SoundManagerEvent.emit(SoundManagerType.MOVE);
                 }
 
                 GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
@@ -119,6 +139,14 @@ public class MovePlayer : MonoBehaviour {
             CameraManager.instance.StartCoroutine("StopComete");
         }
         speed = 0;
+        EventManager.ArrowIsLoaded += LaunchArrowLoadedSound;
         Destroy(pParticles);
+    }
+
+
+    void LaunchArrowLoadedSound()
+    {
+        SoundManagerEvent.emit(SoundManagerType.FLECHE_LOADED);
+        EventManager.ArrowIsLoaded -= LaunchArrowLoadedSound;
     }
 }

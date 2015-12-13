@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: c2e8329ee16f5ea44a080a543e3a6b5a
-timeCreated: 1450028324
+guid: 812fc04b65c18154d91ea1e81fb8d354
+timeCreated: 1450028704
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -9,7 +9,7 @@ SubstanceImporter:
     name: New_Graph
     prototypeName: New_Graph
     shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-    shaderKeywords: 
+    shaderKeywords: _METALLICGLOSSMAP _NORMALMAP
     renderQueue: -1
     lightmapFlags: 5
     inputs:

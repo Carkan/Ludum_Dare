@@ -30,6 +30,7 @@ public class CharacterManager : MonoBehaviour {
         {
             if (col.GetComponent<MorceauDelais>().prenable)
             {
+                SoundManagerEvent.emit(SoundManagerType.MORCEAUX_RECUP);
                 Destroy(col.gameObject);
                 AddMorceau();
             }
@@ -39,6 +40,7 @@ public class CharacterManager : MonoBehaviour {
     void LevelUp ()
     {
         //Mettre un switch qui fait le level up en fonction des morceaux (si morceaux > 8 && < 20, level = 1)
+        SoundManagerEvent.emit(SoundManagerType.LEVEL_UP);
         level++;
         RescalePlayer();
         RescaleCenter();
