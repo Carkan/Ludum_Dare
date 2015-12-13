@@ -7,6 +7,8 @@ public class MovePlayer : MonoBehaviour {
     bool aboutToShoot;
     bool isMoving;
     float speed;
+    public GameObject fxComete;
+    public GameObject myCamera;
     
     public Image forceGauge;
 
@@ -14,12 +16,14 @@ public class MovePlayer : MonoBehaviour {
 
     Rigidbody rb;
 
+    public GameObject m_ParticuleCanon;
 
 
 	// Use this for initialization
 	void Start ()
     {
         rb = asteroid.GetComponent<Rigidbody>();
+        
 	}
     
 	// Update is called once per frame
@@ -50,10 +54,14 @@ public class MovePlayer : MonoBehaviour {
             }
             else if (aboutToShoot)
             {
-
                 rb.AddForce(transform.forward * speed);
                 isMoving = true;
-                //StartCoroutine(FadeForce(-transform.forward, speed));
+                Debug.Log(transform.eulerAngles);
+                GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
+                //particles.transform.LookAt(myCamera.transform.position, Vector3.forward);
+                //particles.transform.localEulerAngles += new Vector3(30, 0, 0);
+                particles.GetComponent<TaleManager>().target = asteroid.transform;
+                StartCoroutine(ParticleManager(particles));
 
                 aboutToShoot = false;
             }
@@ -64,4 +72,10 @@ public class MovePlayer : MonoBehaviour {
         }
         
 	}
+
+    IEnumerator ParticleManager(GameObject pParticles)
+    {
+        yield return new WaitForSeconds(1);
+        Destroy(pParticles);
+    }
 }
