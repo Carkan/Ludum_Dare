@@ -9,7 +9,6 @@ public class MovePlayer : MonoBehaviour {
     float speed;
     float speedMax;
     public GameObject fxComete;
-    public GameObject myCamera;
     
     public Image forceGauge;
 
@@ -63,11 +62,15 @@ public class MovePlayer : MonoBehaviour {
                 
                 rb.AddForce(transform.forward * speed);
                 isMoving = true;
-                Debug.Log(transform.eulerAngles);
-                //GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
-                //particles.GetComponent<TaleManager>().target = asteroid.transform;
-                //StartCoroutine(ParticleManager(particles));
-                speed = 0;
+                if(speed > (speedMax/4)*3)
+                {
+                    CameraManager.instance.StartCoroutine("MoveComete");
+                    CameraManager.instance.StartCoroutine("Shake");
+                }
+
+                GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
+                particles.GetComponent<TaleManager>().target = asteroid.transform;
+                StartCoroutine(ParticleManager(particles));
                 aboutToShoot = false;
             }
         }
@@ -81,6 +84,11 @@ public class MovePlayer : MonoBehaviour {
     IEnumerator ParticleManager(GameObject pParticles)
     {
         yield return new WaitForSeconds(1);
+        if (speed > (speedMax / 4) * 3)
+        {
+            CameraManager.instance.StartCoroutine("StopComete");
+        }
+        speed = 0;
         Destroy(pParticles);
     }
 }
