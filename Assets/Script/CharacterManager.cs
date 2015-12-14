@@ -7,6 +7,8 @@ public class CharacterManager : MonoBehaviour {
 
     public GameObject myCamera;
     public GameObject myCenter;
+    public GameObject particlesPiece;
+    public GameObject particlesLevel;
     public int level;
     public int morceaux;
     public Mesh mesh1;
@@ -42,6 +44,7 @@ public class CharacterManager : MonoBehaviour {
             if (col.GetComponent<MorceauDelais>().prenable)
             {
                 SoundManagerEvent.emit(SoundManagerType.MORCEAUX_RECUP);
+                StartCoroutine("LaunchParticlesPiece");
                 Destroy(col.gameObject);
                 AddMorceau();
             }
@@ -53,6 +56,7 @@ public class CharacterManager : MonoBehaviour {
         //Mettre un switch qui fait le level up en fonction des morceaux (si morceaux > 8 && < 20, level = 1)
         SoundManagerEvent.emit(SoundManagerType.LEVEL_UP);
         level++;
+        StartCoroutine("LaunchParticlesLevel");
         CameraManager.instance.LaunchShake(120, 0.3f);
         StartCoroutine("RescalePlayer"); 
         StartCoroutine("RescaleCenter");
@@ -88,6 +92,23 @@ public class CharacterManager : MonoBehaviour {
             time += Time.deltaTime;
             yield return 0;
         }
+    }
+
+
+    IEnumerator LaunchParticlesPiece()
+    {
+        GameObject particles = Instantiate(particlesPiece, transform.position, transform.rotation) as GameObject;
+        particles.GetComponent<FollowTarget>().target = gameObject;
+        yield return new WaitForSeconds(1);
+        Destroy(particles);
+    }
+
+    IEnumerator LaunchParticlesLevel()
+    {
+        GameObject particles = Instantiate(particlesLevel, transform.position, transform.rotation) as GameObject;
+        particles.GetComponent<FollowTarget>().target = gameObject;
+        yield return new WaitForSeconds(1);
+        Destroy(particles);
     }
 
     void AddMorceau ()
