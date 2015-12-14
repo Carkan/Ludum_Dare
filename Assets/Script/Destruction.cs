@@ -6,10 +6,12 @@ public class Destruction : MonoBehaviour {
     int leLevel;
     public Material destroyShader;
     public int levelNeeded;
+    public GameObject particlesExplosion;
 
   
     void OnCollisionEnter (Collision col)
     {
+        Debug.Log(transform.gameObject.name);
         if (col.gameObject.tag == "Player" && CharacterManager.instance.level < levelNeeded)
         {
             
@@ -29,9 +31,18 @@ public class Destruction : MonoBehaviour {
                 transform.GetChild(0).parent = null;
             }
             Destroy(transform.GetChild(0).gameObject);
-            SoundManagerEvent.emit(SoundManagerType.PLANETE_EXPLOSION);
-            Destroy(gameObject);
+            StartCoroutine("LaunchParticles");
+            
         }
     }
 
+
+    IEnumerator LaunchParticles()
+    {
+        SoundManagerEvent.emit(SoundManagerType.PLANETE_EXPLOSION);
+        GameObject particles = Instantiate(particlesExplosion, transform.position, transform.rotation) as GameObject;
+        yield return new WaitForSeconds(2);
+        Destroy(particles);
+        Destroy(gameObject);
+    }
 }

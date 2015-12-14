@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: da358b770910ac04896e61bc42c3e96e
-timeCreated: 1450013921
+timeCreated: 1450132350
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - destroyShader: {fileID: 1241579121, guid: c2e8329ee16f5ea44a080a543e3a6b5a, type: 3}
+  - particlesExplosion: {fileID: 171058, guid: c59dfad8f6a7ba24f9fdbdbf6351806a, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
