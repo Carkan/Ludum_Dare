@@ -30,7 +30,7 @@ public class CharacterManager : MonoBehaviour {
 
     void Start ()
     {
-        morceaux = 0;
+        //morceaux = 0;
         level = 1;
         GetComponent<MeshFilter>().mesh = mesh1;
     }
@@ -53,18 +53,41 @@ public class CharacterManager : MonoBehaviour {
         //Mettre un switch qui fait le level up en fonction des morceaux (si morceaux > 8 && < 20, level = 1)
         SoundManagerEvent.emit(SoundManagerType.LEVEL_UP);
         level++;
-        RescalePlayer();
-        RescaleCenter();
+        CameraManager.instance.LaunchShake(120, 0.3f);
+        StartCoroutine("RescalePlayer"); 
+        StartCoroutine("RescaleCenter");
     }
 
-    void RescaleCenter ()
+    IEnumerator RescaleCenter ()
     {
-        myCenter.transform.localScale = myCenter.transform.localScale + new Vector3(0.5f, 0.5f, 0.5f);
+        
+        Vector3 initScale = myCenter.transform.localScale;
+        yield return new WaitForSeconds(2f);
+        float myConst = 0;
+        float time = 0;
+        float timeMax = 4;
+        while(time < timeMax)
+        {
+            myConst = Mathf.Lerp(-1, 0, time / timeMax);
+            myCenter.transform.localScale = Vector3.Lerp(initScale + new Vector3(0.5f, 0.5f, 0.5f), initScale, Mathf.Pow(myConst, 2));
+            time += Time.deltaTime;
+            yield return 0;
+        }
     }
 
-    void RescalePlayer()
+    IEnumerator RescalePlayer()
     {
-        transform.localScale = transform.localScale + new Vector3(0.5f, 0.5f, 0.5f);
+        Vector3 initScale = transform.localScale;
+        float myConst = 0;
+        float time = 0;
+        float timeMax = 4;
+        while (time < timeMax)
+        {
+            myConst = Mathf.Lerp(-1, 0, time / timeMax);
+            transform.localScale = Vector3.Lerp(initScale + new Vector3(0.5f, 0.5f, 0.5f), initScale, Mathf.Pow(myConst, 2));
+            time += Time.deltaTime;
+            yield return 0;
+        }
     }
 
     void AddMorceau ()

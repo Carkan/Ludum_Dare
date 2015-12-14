@@ -4,7 +4,7 @@ using System.Collections;
 public class Destruction : MonoBehaviour {
 
     int leLevel;
-    public ProceduralMaterial destroyShader;
+    public Material destroyShader;
     public int levelNeeded;
 
   

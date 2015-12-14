@@ -38,6 +38,12 @@ public class CameraManager : MonoBehaviour
                         + Vector3.up * Input.GetAxis("R_XAxis_1") * speed);
     }
 
+
+    public void LaunchShake(float pTimeMax, float pMagnitude)
+    {
+        StartCoroutine(Shake(pTimeMax, pMagnitude));
+    }
+
     IEnumerator MoveComete()
     {
         screenShake = true;
@@ -71,15 +77,13 @@ public class CameraManager : MonoBehaviour
     }
 
 
-    IEnumerator Shake()
+    IEnumerator Shake(float timeMax, float pMagnitude)
     {
-        float magnitude = 0.1f;
-
         float elapsed = 0.0f;
 
         Vector3 originalCamPos = camera.transform.localPosition;
 
-        while (elapsed < 1)
+        while (elapsed < timeMax)
         {
 
             elapsed += Time.deltaTime;
@@ -90,12 +94,12 @@ public class CameraManager : MonoBehaviour
             // map value to [-1, 1]
             float x = Random.value * 2.0f - 1.0f;
             float y = Random.value * 2.0f - 1.0f;
-            x *= magnitude * damper;
-            y *= magnitude * damper;
+            x *= pMagnitude * damper;
+            y *= pMagnitude * damper;
 
             camera.transform.localPosition = new Vector3(originalCamPos.x + x, originalCamPos.y + y, originalCamPos.z);
 
-            yield return null;
+            yield return 0;
         }
 
         camera.transform.localPosition = originalCamPos;

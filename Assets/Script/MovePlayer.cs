@@ -88,7 +88,8 @@ public class MovePlayer : MonoBehaviour
                 forceGauge.enabled = true;
                 if(speed < speedMax)
                 {
-                    speed += 50;
+                    speed += 100;
+
                 }
                 
             }
@@ -103,15 +104,19 @@ public class MovePlayer : MonoBehaviour
                 animatorFleche3.SetBool("Start_Anim", false);
                 animatorFleche4.SetBool("Start_Anim", false);
 
+
                 animatorFleche1.SetBool("isLoaded", false);
                 animatorFleche2.SetBool("isLoaded", false);
                 animatorFleche3.SetBool("isLoaded", false);
                 animatorFleche4.SetBool("isLoaded", false);
-                if(speed > (speedMax/4)*3)
+
+
+                if (speed > (speedMax/4)*3)
                 {
-                    //SoundManagerEvent.emit(SoundManagerType.MOVE_FAST);
+                    SoundManagerEvent.emit(SoundManagerType.MOVE_FAST);
                     CameraManager.instance.StartCoroutine("MoveComete");
-                    CameraManager.instance.StartCoroutine("Shake");
+                    CameraManager.instance.LaunchShake(1, 0.1f);
+
                 }
                 else
                 {
