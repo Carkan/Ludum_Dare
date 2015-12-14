@@ -33,11 +33,13 @@ public class SoundManager : MonoBehaviour {
     void Start()
 	{
 		SoundManagerEvent.onEvent += Play;
+        SoundManagerEvent.onEvent += Stop;
     }
 
 	void OnDestroy()
 	{
 		SoundManagerEvent.onEvent -= Play;
+        SoundManagerEvent.onEvent -= Stop;
 	}
 
 	public void Play(SoundManagerType emt)
@@ -88,4 +90,17 @@ public class SoundManager : MonoBehaviour {
 
         }
 	}
+
+
+
+    public void Stop(SoundManagerType emt)
+    {
+        switch (emt)
+        {
+            case SoundManagerType.STOP_FLECHE_LOADED:
+                Source[3].Stop();
+                break;
+
+        }
+    }
 }

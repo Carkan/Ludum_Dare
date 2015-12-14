@@ -24,6 +24,11 @@ public class ChampDeForce : MonoBehaviour {
             {
                 if (hit.collider.gameObject != forceField)
                 {
+                    if (forceField != null)
+                    {
+                        forceField.transform.GetChild(0).transform.gameObject.SetActive(false);
+                    }
+                    
                     forceField = hit.collider.gameObject;
                     forceField.transform.GetChild(0).transform.gameObject.SetActive(true);
                 }
@@ -31,12 +36,11 @@ public class ChampDeForce : MonoBehaviour {
             }
         }
 
+        
         if (hit.collider == null)
         {
-            Debug.Log("hello");
             if (forceField != null)
             {
-
                 forceField.transform.GetChild(0).transform.gameObject.SetActive(false);
             }
             forceField = null;

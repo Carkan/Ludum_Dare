@@ -31,6 +31,7 @@ public enum SoundManagerType
     MOVE_FAST,
     PLANETE_EXPLOSION,
     FLECHE_LOADED,
+    STOP_FLECHE_LOADED,
     MORCEAUX_RECUP,
     LEVEL_UP,
     DESTROY_PLAYER

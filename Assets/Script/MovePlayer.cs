@@ -120,6 +120,7 @@ public class MovePlayer : MonoBehaviour
 
                 GameObject particles = Instantiate(fxComete, m_ParticuleCanon.transform.position, m_ParticuleCanon.transform.rotation) as GameObject;
                 particles.GetComponent<TaleManager>().target = asteroid.transform;
+                SoundManagerEvent.emit(SoundManagerType.STOP_FLECHE_LOADED);
                 StartCoroutine(ParticleManager(particles));
                 aboutToShoot = false;
             }
