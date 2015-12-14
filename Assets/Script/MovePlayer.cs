@@ -116,7 +116,6 @@ public class MovePlayer : MonoBehaviour
                     SoundManagerEvent.emit(SoundManagerType.MOVE_FAST);
                     CameraManager.instance.StartCoroutine("MoveComete");
                     CameraManager.instance.LaunchShake(1, 0.1f);
-
                 }
                 else
                 {
