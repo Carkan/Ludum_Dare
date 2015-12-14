@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5181098255859b8428c9d092feded8d8
-timeCreated: 1450119037
+guid: 859b84782ffe8a44e8faf1c5120a5fba
+timeCreated: 1450119054
 licenseType: Free
 SubstanceImporter:
   serializedVersion: 5
@@ -41,6 +41,11 @@ SubstanceImporter:
       filterMode: 1
       aniso: 1
       wrapMode: 0
+    - name: New_Graph_emissive
+      alphaSource: 0
+      filterMode: 1
+      aniso: 1
+      wrapMode: 0
     textureAssignments:
     - shaderProp:
         name: _MainTex
@@ -54,6 +59,10 @@ SubstanceImporter:
         name: _MetallicGlossMap
       material: {instanceID: 0}
       baseUID: 679316574
+    - shaderProp:
+        name: _EmissionMap
+      material: {instanceID: 0}
+      baseUID: 707051799
     buildTargetSettings:
     - serializedVersion: 2
       buildTarget: 
