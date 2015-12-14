@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
     float rotationY;
     public int speed;
 
-    public GameObject camera;
+    public GameObject cameraPlayer;
 
 
     // Use this for initialization
@@ -47,14 +47,14 @@ public class CameraManager : MonoBehaviour
     IEnumerator MoveComete()
     {
         screenShake = true;
-        camera.GetComponent<Camera>().fieldOfView = 60;
+        cameraPlayer.GetComponent<Camera>().fieldOfView = 60;
         float myConst = 0;
         float time = 0;
         float timeMax = 0.5f;
         while (time < timeMax)
         {
             myConst = Mathf.Lerp(-1, 0, time / timeMax);
-            camera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(80, 60, Mathf.Pow(myConst, 2));
+            cameraPlayer.GetComponent<Camera>().fieldOfView = Mathf.Lerp(80, 60, Mathf.Pow(myConst, 2));
             time += Time.deltaTime;
             yield return 0;
         }
@@ -63,14 +63,14 @@ public class CameraManager : MonoBehaviour
     IEnumerator StopComete()
     {
         screenShake = false;
-        camera.GetComponent<Camera>().fieldOfView = 60;
+        cameraPlayer.GetComponent<Camera>().fieldOfView = 60;
         float myConst = 0;
         float time = 0;
         float timeMax = 0.2f;
         while (time < timeMax)
         {
             myConst = Mathf.Lerp(-1, 0, time / timeMax);
-            camera.GetComponent<Camera>().fieldOfView = Mathf.Lerp(60, 80, Mathf.Pow(myConst, 2));
+            cameraPlayer.GetComponent<Camera>().fieldOfView = Mathf.Lerp(60, 80, Mathf.Pow(myConst, 2));
             time += Time.deltaTime;
             yield return 0;
         }
@@ -81,7 +81,7 @@ public class CameraManager : MonoBehaviour
     {
         float elapsed = 0.0f;
 
-        Vector3 originalCamPos = camera.transform.localPosition;
+        Vector3 originalCamPos = cameraPlayer.transform.localPosition;
 
         while (elapsed < timeMax)
         {
@@ -97,11 +97,11 @@ public class CameraManager : MonoBehaviour
             x *= pMagnitude * damper;
             y *= pMagnitude * damper;
 
-            camera.transform.localPosition = new Vector3(originalCamPos.x + x, originalCamPos.y + y, originalCamPos.z);
+            cameraPlayer.transform.localPosition = new Vector3(originalCamPos.x + x, originalCamPos.y + y, originalCamPos.z);
 
             yield return 0;
         }
 
-        camera.transform.localPosition = originalCamPos;
+        cameraPlayer.transform.localPosition = originalCamPos;
     }
 }

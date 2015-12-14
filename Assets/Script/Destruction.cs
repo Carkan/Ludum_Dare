@@ -12,10 +12,9 @@ public class Destruction : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player" && CharacterManager.instance.level < levelNeeded)
         {
-            col.gameObject.SetActive(false);
+            
             SoundManagerEvent.emit(SoundManagerType.DESTROY_PLAYER);
-
-            Debug.Log("Game Over");
+            col.gameObject.GetComponent<ExplosionPlayer>().coroutinestartTAMERE();
         }
 
         if (col.gameObject.tag == "Player" && CharacterManager.instance.level >= levelNeeded)
