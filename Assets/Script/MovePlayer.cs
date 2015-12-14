@@ -109,7 +109,7 @@ public class MovePlayer : MonoBehaviour
                 animatorFleche4.SetBool("isLoaded", false);
                 if(speed > (speedMax/4)*3)
                 {
-                    //SoundManagerEvent.emit(SoundManagerType.MOVE_FAST);
+                    SoundManagerEvent.emit(SoundManagerType.MOVE_FAST);
                     CameraManager.instance.StartCoroutine("MoveComete");
                     CameraManager.instance.StartCoroutine("Shake");
                 }
