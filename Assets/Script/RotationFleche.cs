@@ -7,10 +7,10 @@ public class RotationFleche : MonoBehaviour {
 
     public Image myImage;
     public Sprite mySprite;
+    public GameObject canvas;
 
 
     void Update () {
-        transform.Rotate(0, 0, 2f);
 
         if (Input.GetButtonDown("A_0"))
         {
@@ -21,6 +21,7 @@ public class RotationFleche : MonoBehaviour {
 
     public void ButtonRestart()
     {
-        Application.LoadLevel("Main");
+        Application.LoadLevelAsync("Main");
+        canvas.SetActive(true);
     }
 }

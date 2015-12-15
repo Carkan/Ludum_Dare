@@ -4,23 +4,32 @@ using System.Collections;
 
 public class MenuPlayCamera : MonoBehaviour {
 
+
     public Image myImage;
     public Sprite mySprite;
+    public GameObject loadingScreen;
+    public GameObject titleScreen;
+    bool isLoading;
 
-	// Update is called once per frame
-	void Update () {
+
+    void Update()
+    {
         transform.Rotate(0, 0.1f, 0);
-    
-        if (Input.GetButtonDown("A_0"))
+        if(!isLoading)
         {
-            myImage.sprite = mySprite;
-            ButtonStart();
+            if (Input.GetButtonDown("A_0"))
+            {
+                myImage.sprite = mySprite;
+                isLoading = true;
+                ButtonRestart();
+            }
         }
     }
 
-
-    public void ButtonStart()
+    public void ButtonRestart()
     {
-        Application.LoadLevel("Main");
+        Application.LoadLevelAsync("Main");
+        loadingScreen.SetActive(true);
+        titleScreen.SetActive(false);
     }
 }
